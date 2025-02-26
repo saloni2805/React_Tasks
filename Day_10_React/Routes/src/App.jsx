@@ -5,6 +5,7 @@ import Home from './Home'
 import About from './About'
 import Services from './Services'
 import PNF from './PNF'
+import Hooks from './Hooks'
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
-
+          <Route path="/hooks/:name/:id" element={<Hooks />} />
 
           {/* Fallback Routing */}
           <Route path='*' element={<PNF />}></Route>
