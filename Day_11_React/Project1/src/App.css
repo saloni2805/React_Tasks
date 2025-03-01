@@ -1,0 +1,19 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+} */
+
+h1 {
+  font-family: "Sigmar", serif;
+  /* font-weight: 100;
+  font-style: normal; */
+}
+
+/* App.css */
+
+.active {
+  color: rgb(209, 24, 24) !important;
+  font-weight: bold !important;
+}
