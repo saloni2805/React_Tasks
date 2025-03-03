@@ -15,6 +15,7 @@ import {
     BsTwitterX,
     BsLinkedin,
 } from "react-icons/bs"
+import GoBackBtn from "./GoBackBtn"
 
 const ContactUs = () => {
     return (
@@ -50,9 +51,10 @@ const ContactUs = () => {
                                 <div className="form-group m-2">
                                     <textarea className="form-control" placeholder="Message" />
                                 </div>
-                                <div className="d-flex justify-content-center mt-3">
+                                <div className=" d-flex justify-content-center mt-3">
                                     {/* <button type="submit" className="btn btn-primary">Send Message</button> */}
                                     <Button
+                                        className='btn'
                                         name="Send Message"
                                         type="submit"
                                         style={{ backgroundColor: "brown", color: "white" }}
@@ -80,14 +82,14 @@ const ContactUs = () => {
                             <div className="">
                                 <h1>Sofa.com</h1>
                                 <ul className="list-group list-group-flush">
-                                    <li className="list-group-item fs-5">
-                                        <BsTelephone size={24} className="me-2" /> +91- 9867546345
+                                    <li className="list-group-item fs-6">
+                                        <BsTelephone size={20} className="me-2" /> +91- 9867546345
                                     </li>
-                                    <li className="list-group-item fs-5">
-                                        <BsInbox size={24} className="me-2" /> sofa.xyz@gmail.com
+                                    <li className="list-group-item fs-6">
+                                        <BsInbox size={20} className="me-2" /> sofa.xyz@gmail.com
                                     </li>
-                                    <li className="list-group-item fs-5">
-                                        <BsPinMap size={24} className="me-2" /> 654, yubdfvi, wiuevh, wrunv, njenv, 765567
+                                    <li className="list-group-item fs-6">
+                                        <BsPinMap size={20} className="me-2" /> 654, yubdfvi, wiuevh, wrunv, njenv, 765567
                                     </li>
                                 </ul>
                             </div>

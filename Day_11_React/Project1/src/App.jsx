@@ -5,7 +5,8 @@ import Home from './Components/Home'
 import About from './Components/About'
 import ContactUs from './Components/ContactUs'
 import LayOut from './Components/lAYoUT.JSX'
-import AllProducts from './Components/AllProducts'
+// import AllProducts from './Components/AllProducts'
+import Product from './Components/Product'
 
 function App() {
 
@@ -18,7 +19,10 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<ContactUs />}></Route>
-            <Route path="/allproducts" element={<AllProducts />}></Route></Route>
+            <Route path="/:category/:id" element={<Product />}></Route>
+
+            {/* <Route path="/allproducts" element={<AllProducts />}></Route> */}
+          </Route>
         </Routes>
       </Router >
     </>

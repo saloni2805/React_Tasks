@@ -26,65 +26,74 @@ const Home = () => {
 
     const SofaSetList = [
         {
-            id: 1,
+            id: '1',
             name: "Product 1",
-            price: 100,
+            category: "SofaSet", price: 100,
             image: images
         },
         {
-            id: 2,
+            id: '2',
             name: "Product 1",
+            category: "SofaSet",
             price: 100,
             image: image2
         },
         {
-            id: 3,
+            id: '3',
             name: "Product 1",
+            category: "SofaSet",
             price: 100,
             image: image3
         }]
 
     const SofaList = [{
-        id: 4,
+        id: '4',
         name: "Product 1",
+        category: "Sofa",
         price: 100,
         image: img3
     },
     {
-        id: 5,
+        id: '5',
         name: "Product 1",
+        category: "Sofa",
         price: 100,
         image: img2
     },
     {
-        id: 6,
+        id: '6',
         name: "Product 1",
+        category: "Sofa",
         price: 100,
         image: imge1
     }
     ]
 
     const ChairsList = [{
-        id: 7,
+        id: '7',
         name: "Product 1",
+        category: "Chair",
         price: 100,
         image: images2
     },
     {
-        id: 8,
+        id: '8',
         name: "Product 1",
+        category: "Chair",
         price: 100,
         image: imge3
     },
     {
-        id: 9,
+        id: '9',
         name: "Product 1",
+        category: "Chair",
         price: 100,
         image: img4
     },
     {
-        id: 10,
+        id: '10',
         name: "Product 1",
+        category: "Chair",
         price: 100,
         image: img5
     }]
@@ -126,31 +135,19 @@ const Home = () => {
             <Carousels />
             <Parition name='Our Products' />
             <div className='w-50 m-auto d-flex justify-content-evenly mt-4'>
-                <Button type='button' name='View All' onClick={ViewAllProducts} style={{ backgroundColor: 'brown', color: 'white' }} />
-                <Button type='button' name='Sofa' onClick={ViewSofa} style={{ backgroundColor: 'brown', color: 'white' }} />
-                <Button type='button' name='Chairs' onClick={ViewChairs} style={{ backgroundColor: 'brown', color: 'white' }} />
-                <Button type='button' name='Sofa Sets' onClick={ViewSofaSets} s style={{ backgroundColor: 'brown', color: 'white' }} />
+                <Button type='button' className={"btn"} name='View All' onClick={ViewAllProducts} style={{ backgroundColor: 'brown', color: 'white' }} />
+                <Button type='button' className={"btn"} name='Sofa' onClick={ViewSofa} style={{ backgroundColor: 'brown', color: 'white' }} />
+                <Button type='button' className={"btn"} name='Chairs' onClick={ViewChairs} style={{ backgroundColor: 'brown', color: 'white' }} />
+                <Button type='button' className={"btn"} name='Sofa Sets' onClick={ViewSofaSets} s style={{ backgroundColor: 'brown', color: 'white' }} />
             </div>
             <div className='container mt-4  '>
                 <div className='col-md-12 '>
                     <div className='row '>
-                        {/* {
-                            Sofa && Sofa_Sets && Chairs && ProductList.map((product) => {
-                                // console.log(product.category)
-                                return (
-                                    <div key={product.id} className="col-md-3 my-3">
-                                        < Products products={product} />
-                                    </div>
-
-                                )
-
-                            })
-                        } */}
                         {
                             Chairs && ChairsList.map((product) => {
                                 return (
                                     <div key={product.id} className="col-md-3 my-3 d-flex justify-content-center">
-                                        < Products products={product} />
+                                        < Products products={product} category={product.category} />
                                     </div>
 
                                 )
@@ -161,7 +158,7 @@ const Home = () => {
                             Sofa_Sets && SofaSetList.map((product) => {
                                 return (
                                     <div key={product.id} className="col-md-3 my-3 d-flex justify-content-center">
-                                        < Products products={product} />
+                                        < Products products={product} category={product.category} />
                                     </div>
 
                                 )
@@ -172,7 +169,7 @@ const Home = () => {
                             Sofa && SofaList.map((product) => {
                                 return (
                                     <div key={product.id} className="col-md-3 my-3 d-flex justify-content-center">
-                                        < Products products={product} />
+                                        < Products products={product} category={product.category} />
                                     </div>
 
                                 )
