@@ -31,7 +31,7 @@ const App = () => {
       name: "Rohit Sharma",
       img: "https://www.greaterkashmir.com/wp-content/uploads/2024/06/Rohit-Sharma.jpg",
       email: "rohit@gmail.com",
-      about: "Hitman...! caption of current indian cricket team.",
+      about: "Hitman...! captain of current indian cricket team.",
       btn1: "Accept",
       btn2: "Reject",
     },
