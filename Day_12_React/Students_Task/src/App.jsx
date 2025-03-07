@@ -59,10 +59,20 @@ const App = () => {
             <h1 className='text-center py-2 bg-danger-subtle'>Student Information</h1>
           </div>
           <div className="d-flex justify-content-evenly mt-5">
-            <button className='btn btn-info' ref={result} onClick={() => setStudent(students[0])}>Student 1</button>
+            {/* <button className='btn btn-info' ref={result} onClick={() => setStudent(students[0])}>Student 1</button>
             <button className='btn btn-info' ref={result} onClick={() => setStudent(students[1])}>Student 2</button>
             <button className='btn btn-info' ref={result} onClick={() => setStudent(students[2])}  >Student 3</button>
-            <button className='btn btn-info' ref={result} onClick={() => setStudent(students[3])} >Student 4</button>
+            <button className='btn btn-info' ref={result} onClick={() => setStudent(students[3])} >Student 4</button> */}
+            {students.map((stu) => (
+              <button
+                key={stu.id}
+                ref={result}
+                className="btn btn-info"
+                onClick={() => setStudent(stu)}
+              >
+                {stu.name}
+              </button>
+            ))}
 
           </div>
         </div>
