@@ -11,8 +11,7 @@ const App = () => {
       img: "https://www.jagranimages.com/images/newimg/23042023/23_04_2023-sachin_world_cup_trophy_23393532.jpg",
       email: "sachin@gmail.com",
       about: "God of cricket",
-      btn1: "Accept",
-      btn2: "Reject",
+
     }
 
     ,
@@ -22,8 +21,7 @@ const App = () => {
       img: "https://www.aljazeera.com/wp-content/uploads/2023/03/33B24KW-highres.jpg?resize=1800%2C1800",
       email: "virat@gmail.com",
       about: "King...! Goat of Current cricket era.",
-      btn1: "Accept",
-      btn2: "Reject",
+
     },
 
     {
@@ -32,8 +30,6 @@ const App = () => {
       img: "https://www.greaterkashmir.com/wp-content/uploads/2024/06/Rohit-Sharma.jpg",
       email: "rohit@gmail.com",
       about: "Hitman...! captain of current indian cricket team.",
-      btn1: "Accept",
-      btn2: "Reject",
     },
 
     {
@@ -42,8 +38,6 @@ const App = () => {
       img: "https://static.cricbuzz.com/a/img/v1/i1/c592193/hardik-pandya-to-play-in-vijay-hazare-trophy-from-saturday.jpg?d=low&p=det",
       email: "hardik@gmail.com",
       about: "Clutch God..! Hated by everyone, Defeated by none.",
-      btn1: "Accept",
-      btn2: "Reject",
     },
   ]
 
