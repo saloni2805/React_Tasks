@@ -11,19 +11,14 @@ const App = () => {
       img: "https://www.jagranimages.com/images/newimg/23042023/23_04_2023-sachin_world_cup_trophy_23393532.jpg",
       email: "sachin@gmail.com",
       about: "God of cricket",
-
-    }
-
-    ,
+    },
     {
       id: 2,
       name: "Virat Kohli",
       img: "https://www.aljazeera.com/wp-content/uploads/2023/03/33B24KW-highres.jpg?resize=1800%2C1800",
       email: "virat@gmail.com",
       about: "King...! Goat of Current cricket era.",
-
     },
-
     {
       id: 3,
       name: "Rohit Sharma",
@@ -31,7 +26,6 @@ const App = () => {
       email: "rohit@gmail.com",
       about: "Hitman...! captain of current indian cricket team.",
     },
-
     {
       id: 4,
       name: "Hardik Pandya",
@@ -43,7 +37,6 @@ const App = () => {
 
   const [student, setStudent] = useState(students[0])
   const result = useRef(null);
-
 
   return (
     <>
