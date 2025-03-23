@@ -1,0 +1,28 @@
+{
+  "Employees": [
+    {
+      "efirstname": "HP 14s ",
+      "elastname": "67000",
+      "edepartment": "Other",
+      "id": 1
+    },
+    {
+      "efirstname": "saloni",
+      "elastname": "potdar",
+      "edepartment": "Anguler",
+      "id": 2
+    },
+    {
+      "efirstname": "Sayani",
+      "elastname": "Potdar",
+      "edepartment": "Node",
+      "id": 3
+    },
+    {
+      "efirstname": "Anushka",
+      "elastname": "Mandal",
+      "edepartment": "Anguler",
+      "id": 5
+    }
+  ]
+}
