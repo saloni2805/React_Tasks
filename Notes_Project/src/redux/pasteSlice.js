@@ -1,33 +1,52 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit"
+import toast from "react-hot-toast"
 
 const initialState = {
-    pastes: localStorage.getItem("pastes") ? JSON.parse(localStorage.getItem("pastes")) : []
+  pastes: localStorage.getItem("pastes")
+    ? JSON.parse(localStorage.getItem("pastes"))
+    : [],
 }
 
 export const pasteSlice = createSlice({
-    name: 'pastes',
-    initialState,
-    reducers: {
-        addToPastes: (state, action) => {
-            // Redux Toolkit allows us to write "mutating" logic in reducers. It
-            // doesn't actually mutate the state because it uses the Immer library,
-            // which detects changes to a "draft state" and produces a brand new
-            // immutable state based off those changes
-
-        },
-        updateToPastes: (state, action) => {
-
-        },
-        resetAllPastes: (state, action) => {
-
-        },
-        removeFromPastes: (state, action) => {
-
-        }
+  name: "pastes",
+  initialState,
+  reducers: {
+    // ---- Addition ----
+    addToPastes: (state, action) => {
+      // Add a check-> Paste already exist vala check
+      const paste = action.payload
+      state.pastes.push(paste)
+      localStorage.setItem("pastes", JSON.stringify(state.pastes))
+      toast.success("Paste created successfuly")
     },
+    // ---- Updation ----
+    updateToPastes: (state, action) => {
+      const paste = action.payload
+      let index = state.pastes.findIndex((item) => item._id === paste._id)
+
+      if (index >= 0) {
+        state.pastes[index] = paste
+        localStorage.setItem("pastes", JSON.stringify(state.pastes))
+      }
+      toast.success("Paste updated successfuly")
+    },
+    // ---- Reset ----
+    resetAllPastes: (state) => {
+      state.pastes = []
+      localStorage.removeItem("pastes")
+    },
+    // ---- Remove ---
+    removeFromPastes: (state, action) => {
+      const pasteId = action.payload
+      state.pastes = state.pastes.filter((item) => item._id !== pasteId)
+      localStorage.setItem("pastes", JSON.stringify(state.pastes))
+      toast.success("Paste deleted successfuly")
+    },
+  },
 })
 
 // Action creators are generated for each case reducer function
-export const { addToPastes, updateToPastes, resetAllPastes, removeFromPastes } = pasteSlice.actions
+export const { addToPastes, updateToPastes, resetAllPastes, removeFromPastes } =
+  pasteSlice.actions
 
 export default pasteSlice.reducer
