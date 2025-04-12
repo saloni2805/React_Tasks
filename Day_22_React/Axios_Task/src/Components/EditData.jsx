@@ -1,48 +1,47 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import axios from 'axios'
+import React, { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import axios from "axios"
 
 const EditData = () => {
-    let nav = useNavigate()
-    const { id } = useParams()
+  let nav = useNavigate()
+  const { id } = useParams()
 
-    const [data, setData] = useState({ efirstname: '', elastname: '', edepartmet: '' })
+  const [data, setData] = useState({
+    efirstname: "",
+    elastname: "",
+    edepartmet: "",
+  })
 
-    const getData = async () => {
-        const resp = await axios.get(`http://localhost:3000/Employees/${id}`)
-        console.log(resp.data)
-        setData(resp.data)
+  const getData = async () => {
+    const resp = await axios.get(`http://localhost:3000/Employees/${id}`)
+    console.log(resp.data)
+    setData(resp.data)
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  const dataHandler = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      await axios.put(`http://localhost:3000/Employees/${id}`, data)
+      console.log(data)
+      setData(data)
+      alert("Form updated !!")
+      nav("/")
+    } catch (error) {
+      console.log(error)
     }
-
-    useEffect(() => {
-        getData()
-    }, [])
-
-    const dataHandler = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value })
-    }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.put(`http://localhost:3000/Employees/${id}`, data)
-            console.log(data)
-            setData(data)
-            alert("Form updated !!")
-            nav('/')
-
-
-        } catch (error) {
-            console.log(error)
-
-        }
-
-    }
-    return (
-        <>
-
-            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-                {/* <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+  }
+  return (
+    <>
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        {/* <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
                         alt="Your Company"
                         src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
@@ -53,28 +52,33 @@ const EditData = () => {
                     </h2>
                 </div> */}
 
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form onSubmit={(e) => { handleSubmit(e) }} className="space-y-6">
-                        <div>
-                            {/* <label htmlFor="email" className="block text-sm/6 font-medium text-blue-400">
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          <form
+            onSubmit={(e) => {
+              handleSubmit(e)
+            }}
+            className="space-y-6"
+          >
+            <div>
+              {/* <label htmlFor="email" className="block text-sm/6 font-medium text-blue-400">
                                 Email address
                             </label> */}
-                            <div className="mt-2">
-                                <input
-                                    id="efirstname"
-                                    name="efirstname"
-                                    type="text"
-                                    value={data.efirstname}
-                                    onChange={(e) => dataHandler(e)}
-                                    placeholder='First Name'
-                                    required
-                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
-                                />
-                            </div>
-                        </div>
+              <div className="mt-2">
+                <input
+                  id="efirstname"
+                  name="efirstname"
+                  type="text"
+                  value={data.efirstname}
+                  onChange={(e) => dataHandler(e)}
+                  placeholder="First Name"
+                  required
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6"
+                />
+              </div>
+            </div>
 
-                        <div>
-                            {/* <div className="flex items-center justify-between">
+            <div>
+              {/* <div className="flex items-center justify-between">
                                 <label htmlFor="password" className="block text-sm/6 font-medium text-blue-400">
                                     Password
                                 </label>
@@ -84,55 +88,55 @@ const EditData = () => {
                                     </a>
                                 </div>
                             </div> */}
-                            <div className="mt-2">
-                                <input
-                                    id="elastname"
-                                    name="elastname"
-                                    type="text"
-                                    value={data.elastname}
-                                    onChange={(e) => dataHandler(e)}
-                                    placeholder='Last Name'
-                                    required
-                                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                                />
-                            </div>
-                        </div>
-                        <div>
-                            <div className="mt-2 ">
-                                <select className="select block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 " name="edepartment"
-                                    value={data.edepartment}
-                                    onChange={(e) => dataHandler(e)}
-                                >
-                                    <option disabled={true} >Pick a Department</option>
-                                    <option value='React'>React</option>
-                                    <option value='Anguler'>Anguler</option>
-                                    <option value='Node'>Node</option>
-                                </select>
-                            </div>
-                        </div>
+              <div className="mt-2">
+                <input
+                  id="elastname"
+                  name="elastname"
+                  type="text"
+                  value={data.elastname}
+                  onChange={(e) => dataHandler(e)}
+                  placeholder="Last Name"
+                  required
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                />
+              </div>
+            </div>
+            <div>
+              <div className="mt-2 ">
+                <select
+                  className="select block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 "
+                  name="edepartment"
+                  value={data.edepartment}
+                  onChange={(e) => dataHandler(e)}
+                >
+                  <option disabled={true}>Pick a Department</option>
+                  <option value="React">React</option>
+                  <option value="Anguler">Anguler</option>
+                  <option value="Node">Node</option>
+                </select>
+              </div>
+            </div>
 
+            <div>
+              <button
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
 
-                        <div>
-                            <button
-                                type="submit"
-                                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            >
-                                Submit
-                            </button>
-                        </div>
-                    </form>
-
-                    {/* <p className="mt-10 text-center text-sm/6 text-gray-500">
+          {/* <p className="mt-10 text-center text-sm/6 text-gray-500">
                         Not a member?{' '}
                         <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
                             Start a 14 day free trial
                         </a>
                     </p> */}
-                </div>
-            </div>
-        </>
-
-    )
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default EditData

@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import CustomizedTables from './Table'
-import useService from './useService'
+import { useState, useEffect } from "react"
+import "./App.css"
+import CustomizedTables from "./Table"
+import useService from "./useService"
 
 function App() {
-
   const [data, setData] = useState([])
   const { getDataService } = useService()
 
@@ -17,10 +16,8 @@ function App() {
   const getData = async () => {
     try {
       const response = await getDataService()
-      console.log(response)
       setData(response.data)
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error)
     }
   }
@@ -29,15 +26,11 @@ function App() {
     getData()
   }, [])
 
-  console.log(data)
-
   return (
     <>
       <h1 align="center">Fetching data from API</h1>
 
-      {
-        <CustomizedTables data={data} />
-      }
+      {<CustomizedTables data={data} />}
     </>
   )
 }
