@@ -40,9 +40,14 @@ function ProductInfo() {
   // console.log(cartItems)
 
   // add to cart
-  const addCart = (products) => {
-    dispatch(addToCart(products))
-    toast.success("add to cart")
+  const addCart = (product) => {
+    const serializedProduct = {
+      ...product,
+      time: product.time?.toDate?.().toISOString() || new Date().toISOString(), // fallback to current time
+    }
+
+    dispatch(addToCart(serializedProduct))
+    toast.success("Added to cart")
   }
 
   useEffect(() => {
