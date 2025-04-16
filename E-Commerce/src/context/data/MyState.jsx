@@ -3,19 +3,27 @@ import MyContext from "./myContext"
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
+  getDocs,
   onSnapshot,
   orderBy,
   query,
+  setDoc,
   Timestamp,
 } from "firebase/firestore"
-import { fireDB } from "../../firebase/firebaseConfig"
+import { fireDB } from "../../firebase/FirebaseConfig"
 import { toast } from "react-toastify"
-// import { useNavigate } from "react-router-dom"
 
 const MyState = ({ children }) => {
+  const [searchkey, setSearchkey] = useState("")
+  const [filterType, setFilterType] = useState("")
+  const [filterPrice, setFilterPrice] = useState("")
   const [mode, setMode] = useState("light")
   const [loading, setLoading] = useState(false)
-  // const nav = useNavigate()
+  const [product, setProduct] = useState([])
+  const [order, setOrder] = useState([])
+  const [user, setUser] = useState([])
   const [products, setProducts] = useState({
     title: "",
     price: "",
@@ -29,17 +37,9 @@ const MyState = ({ children }) => {
       year: "numeric",
     }),
   })
-  const [product, setProduct] = useState([])
 
   // ********************** Add Product Section  **********************
   const addProduct = async () => {
-    console.log(
-      products.title,
-      products.price,
-      products.imageUrl,
-      products.category,
-      products.description
-    )
     if (
       products.title == null ||
       products.price == null ||
@@ -78,9 +78,65 @@ const MyState = ({ children }) => {
           productsArray.push({ ...doc.data(), id: doc.id })
         })
         setProduct(productsArray)
+        console.log("productsArray", productsArray)
         setLoading(false)
       })
       return () => data
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
+    }
+  }
+
+  // Update Product Function
+  const edithandle = (item) => {
+    setProducts(item)
+  }
+
+  const updateProduct = async () => {
+    setLoading(true)
+    try {
+      await setDoc(doc(fireDB, "products", products.id), products)
+      toast.success("Product updated successfully")
+      setTimeout(() => {
+        window.location.href = "/dashboard"
+      }, 800)
+      getProductData()
+      window.location.href = "/dashboard"
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      console.log(error)
+    }
+  }
+
+  // Delete Product Function
+  const deleteProduct = async (item) => {
+    setLoading(true)
+    try {
+      await deleteDoc(doc(fireDB, "products", item.id))
+      toast.success("Product deleted successfully")
+      getProductData()
+      window.location.href = "/dashboard"
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+      console.log(error)
+    }
+  }
+
+  const getOrderData = async () => {
+    setLoading(true)
+    try {
+      const result = await getDocs(collection(fireDB, "orders"))
+      const ordersArray = []
+      result.forEach((doc) => {
+        ordersArray.push(doc.data())
+        setLoading(false)
+      })
+      setOrder(ordersArray)
+      console.log(ordersArray)
+      setLoading(false)
     } catch (error) {
       console.log(error)
       setLoading(false)
@@ -97,8 +153,28 @@ const MyState = ({ children }) => {
     }
   }
 
+  const getUserData = async () => {
+    setLoading(true)
+    try {
+      const result = await getDocs(collection(fireDB, "users"))
+      const usersArray = []
+      result.forEach((doc) => {
+        usersArray.push(doc.data())
+        setLoading(false)
+      })
+      setUser(usersArray)
+      console.log(usersArray)
+      setLoading(false)
+    } catch (error) {
+      console.log(error)
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
     getProductData()
+    getOrderData()
+    getUserData()
   }, [])
 
   return (
@@ -112,6 +188,17 @@ const MyState = ({ children }) => {
         setProducts,
         addProduct,
         product,
+        updateProduct,
+        edithandle,
+        deleteProduct,
+        order,
+        user,
+        searchkey,
+        setSearchkey,
+        filterType,
+        setFilterType,
+        filterPrice,
+        setFilterPrice,
       }}
     >
       {children}

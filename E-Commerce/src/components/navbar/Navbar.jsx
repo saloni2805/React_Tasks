@@ -5,9 +5,12 @@ import { BsFillCloudSunFill } from "react-icons/bs"
 import { FiSun } from "react-icons/fi"
 import myContext from "../../context/data/myContext"
 import { RxCross2 } from "react-icons/rx"
+import { useSelector } from "react-redux"
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+
+  const cartItems = useSelector((state) => state.cart)
 
   const userObj = JSON.parse(localStorage.getItem("user"))
   console.log(userObj)
@@ -18,6 +21,11 @@ export default function Navbar() {
   const logout = () => {
     localStorage.clear()
     window.location.href = "/"
+  }
+
+  const login = () => {
+    // localStorage.clear()
+    window.location.href = "/login"
   }
 
   return (
@@ -113,9 +121,17 @@ export default function Navbar() {
                       </a>
                     </div>
                   ) : (
-                    ""
+                    <div className="flow-root">
+                      <a
+                        onClick={login}
+                        className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                      >
+                        Login
+                      </a>
+                    </div>
                   )}
-                  <div className="flow-root">
+                  {/* <div className="flow-root">
                     <Link
                       to={"/"}
                       className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
@@ -126,7 +142,7 @@ export default function Navbar() {
                         alt="Dan_Abromov"
                       />{" "}
                     </Link>
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="border-t border-gray-200 px-4 py-6">
@@ -207,7 +223,7 @@ export default function Navbar() {
                       className=" text-2xl font-bold text-black  px-2 py-1 rounded"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
-                      E-Bharat
+                      E-Commerce
                     </h1>
                   </div>
                 </Link>
@@ -249,15 +265,25 @@ export default function Navbar() {
                   )}
 
                   {userObj ? (
-                    <a
-                      onClick={logout}
-                      className="text-sm font-medium text-gray-700 cursor-pointer  "
-                      style={{ color: mode === "dark" ? "white" : "" }}
-                    >
-                      Logout
-                    </a>
+                    <div className="flow-root">
+                      <a
+                        onClick={logout}
+                        className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                      >
+                        Logout
+                      </a>
+                    </div>
                   ) : (
-                    ""
+                    <div className="flow-root">
+                      <a
+                        onClick={login}
+                        className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
+                        style={{ color: mode === "dark" ? "white" : "" }}
+                      >
+                        Login
+                      </a>
+                    </div>
                   )}
                 </div>
 
@@ -276,7 +302,7 @@ export default function Navbar() {
                     </span>
                   </a>
                 </div>
-                <div className="hidden lg:ml-8 lg:flex">
+                {/* <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       className="inline-block w-10 h-10 rounded-full"
@@ -284,7 +310,7 @@ export default function Navbar() {
                       alt="Dan_Abromov"
                     />
                   </a>
-                </div>
+                </div> */}
 
                 {/* Search */}
                 <div className="flex lg:ml-6">
@@ -326,7 +352,7 @@ export default function Navbar() {
                       className="ml-2 text-sm font-medium text-gray-700 group-"
                       style={{ color: mode === "dark" ? "white" : "" }}
                     >
-                      0
+                      {cartItems.length}
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </Link>

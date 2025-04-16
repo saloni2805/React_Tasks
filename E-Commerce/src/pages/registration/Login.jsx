@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import MyContext from "../../context/data/myContext"
 import { useContext, useState } from "react"
 import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from "../../firebase/firebaseConfig"
+import { auth } from "../../firebase/FirebaseConfig"
 import { toast } from "react-toastify"
 import Loader from "../../components/loader/Loader"
 
