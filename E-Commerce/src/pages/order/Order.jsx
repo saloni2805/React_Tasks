@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import myContext from "../../context/data/myContext"
+import myContext from "../../context/data/MyContext"
 import Loader from "../../components/loader/Loader"
 
 function Order() {

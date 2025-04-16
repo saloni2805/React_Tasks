@@ -1,5 +1,5 @@
 import React from "react"
-import MyContext from "../../../context/data/myContext"
+import MyContext from "../../../context/data/MyContext"
 import { useContext } from "react"
 
 function UpdateProduct() {

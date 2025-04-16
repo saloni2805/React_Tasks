@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import myContext from "../../context/data/myContext"
+import myContext from "../../context/data/MyContext"
 import Modal from "../../components/modal/Modal"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteFromCart } from "../../redux/cartSlice"

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import MyContext from "./myContext"
+import MyContext from "./MyContext"
 import {
   addDoc,
   collection,

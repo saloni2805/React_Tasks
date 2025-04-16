@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
-import MyContext from "../../context/data/myContext"
+import MyContext from "../../context/data/MyContext"
 import { useContext, useState } from "react"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../firebase/FirebaseConfig"
