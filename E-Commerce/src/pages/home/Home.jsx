@@ -1,7 +1,7 @@
 import React from "react"
 import HeroSection from "../../components/heroSection/HeroSection"
 // import { useContext } from "react"
-// import MyContext from "../../context/data/myContext"
+// import MyContext from "../../context/data/MyContext"
 import Filter from "../../components/filter/Filter"
 import ProductCard from "../../components/productcard/ProductCard"
 import Testimonial from "../../components/testimonial/Testimonial"

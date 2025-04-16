@@ -1,13 +1,13 @@
 import React, { useContext } from "react"
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
-import myContext from "../../../context/data/MyContext"
+import MyContext from "../../../context/data/MyContext"
 import { MdOutlineProductionQuantityLimits } from "react-icons/md"
 import { FaUser, FaCartPlus } from "react-icons/fa"
 import { AiFillShopping } from "react-icons/ai"
 import { Link } from "react-router-dom"
 
 function DashboardTab() {
-  const context = useContext(myContext)
+  const context = useContext(MyContext)
   const { mode, product, edithandle, deleteProduct, order, user } = context
   console.log("object", user)
 

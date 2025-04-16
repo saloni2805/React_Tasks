@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react"
 import { Link } from "react-router-dom"
 import { BsFillCloudSunFill } from "react-icons/bs"
 import { FiSun } from "react-icons/fi"
-import myContext from "../../context/data/MyContext"
+import MyContext from "../../context/data/MyContext"
 import { RxCross2 } from "react-icons/rx"
 import { useSelector } from "react-redux"
 
@@ -15,7 +15,7 @@ export default function Navbar() {
   const userObj = JSON.parse(localStorage.getItem("user"))
   console.log(userObj)
 
-  const context = useContext(myContext)
+  const context = useContext(MyContext)
   const { toggleMode, mode } = context
 
   const logout = () => {

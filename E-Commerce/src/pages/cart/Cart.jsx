@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import myContext from "../../context/data/MyContext"
+import MyContext from "../../context/data/MyContext"
 import Modal from "../../components/modal/Modal"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteFromCart } from "../../redux/cartSlice"
@@ -8,7 +8,7 @@ import { addDoc, collection } from "firebase/firestore"
 import { fireDB } from "../../firebase/FirebaseConfig"
 
 function Cart() {
-  const context = useContext(myContext)
+  const context = useContext(MyContext)
   const [totalAmount, setTotalAmount] = useState(0)
   const [name, setName] = useState("")
   const [address, setAddress] = useState("")

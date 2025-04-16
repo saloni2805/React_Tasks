@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { Link } from "react-router-dom"
-import { auth, fireDB } from "../../firebase/firebaseConfig"
+import { auth, fireDB } from "../../firebase/FirebaseConfig"
 import { useContext, useState } from "react"
 import MyContext from "../../context/data/MyContext"
 import { toast } from "react-toastify"

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import Layout from "../../components/layout/Layout"
-import myContext from "../../context/data/MyContext"
+import MyContext from "../../context/data/MyContext"
 import { useParams } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
 import { doc, getDoc } from "firebase/firestore"
@@ -10,7 +10,7 @@ import { fireDB } from "../../firebase/FirebaseConfig"
 import Loader from "../../components/loader/Loader"
 
 function ProductInfo() {
-  const context = useContext(myContext)
+  const context = useContext(MyContext)
   const { loading, setLoading } = context
 
   const [products, setProducts] = useState("")
