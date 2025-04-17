@@ -1,39 +1,40 @@
 import React from "react"
 import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
-// import { addToPastes, updateToPastes } from "../redux/pasteSlice"
 
 const ViewPaste = () => {
   const { id } = useParams()
   const allPastes = useSelector((state) => state.paste.pastes)
-  const paste = allPastes.filter((p) => p._id === id)[0]
-  console.log(paste.title)
+  const paste = allPastes.find((p) => p._id === id)
+
+  if (!paste) {
+    return (
+      <div className="max-w-xl mx-auto mt-10 text-center text-gray-500">
+        Paste not found.
+      </div>
+    )
+  }
 
   return (
-    <div>
-      <div className="flex flex-row  gap-7 place-content-between mt-5">
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="flex flex-col gap-4">
         <input
-          className="p-1 pl-4 rounded-2xl mt-2 w-[60%]"
           type="text"
-          placeholder="enter title here"
           value={paste.title}
           disabled
-          //   onChange={(e) => setTitle(e.target.value)}
+          className="p-3 rounded-lg border border-gray-300 bg-gray-100 text-gray-800 font-semibold"
         />
-        {/* <button className="mt-2" onClick={createPaste}>
-          {pasteId ? "Update My Paste" : "Create My Paste"}
-        </button> */}
-      </div>
-      <div className="mt-3">
+
         <textarea
           value={paste.content}
-          placeholder="enter content here"
-          //   onChange={(e) => setValue(e.target.value)}
-          rows={20}
-          cols={50}
           disabled
-          className="rounded-2xl mt-4 min-w-[500px] p-4  "
+          rows={15}
+          className="rounded-lg border border-gray-300 bg-gray-100 p-4 text-gray-700 whitespace-pre-wrap resize-none"
         />
+
+        <p className="text-xs text-gray-400 mt-1">
+          Created at: {new Date(paste.createdAt).toLocaleString()}
+        </p>
       </div>
     </div>
   )

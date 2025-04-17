@@ -1,36 +1,33 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useSearchParams } from "react-router-dom"
+import { useSearchParams, useNavigate } from "react-router-dom"
 import { addToPastes, updateToPastes } from "../redux/pasteSlice"
-import { useNavigate } from "react-router-dom"
+import { Copy } from "lucide-react" // Import Copy icon
+import toast from "react-hot-toast"
 
 const Home = () => {
   const [title, setTitle] = useState("")
   const [value, setValue] = useState("")
   const [searchParams, setSearchParams] = useSearchParams()
   const pasteId = searchParams.get("pasteId")
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  // For Edit
   const allPastes = useSelector((state) => state.paste.pastes)
 
-  let createPaste = () => {
+  const createPaste = () => {
     if (title && value) {
-      let paste = {
-        title: title,
+      const paste = {
+        title,
         content: value,
         _id: pasteId || Date.now().toString(36),
         createdAt: new Date().toISOString(),
       }
-      console.log(paste)
 
       if (pasteId) {
-        // Update
         dispatch(updateToPastes(paste))
         navigate("/pastes")
       } else {
-        // Create
         dispatch(addToPastes(paste))
       }
 
@@ -42,35 +39,62 @@ const Home = () => {
 
   useEffect(() => {
     if (pasteId) {
-      const paste = allPastes.find((p) => p._id === pasteId)
-      setTitle(paste.title)
-      setValue(paste.content)
+      const existing = allPastes.find((p) => p._id === pasteId)
+      if (existing) {
+        setTitle(existing.title)
+        setValue(existing.content)
+      }
     }
-  }, [pasteId])
+  }, [pasteId, allPastes])
+
+  // Copy content to clipboard function
+  const handleCopy = () => {
+    navigator.clipboard.writeText(value)
+  }
 
   return (
-    <div>
-      <div className="flex flex-row  gap-7 place-content-between mt-5">
+    <div className="max-w-3xl mx-auto py-10 px-4">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+        {pasteId ? "Edit Your Note" : "Create a New Note"}
+      </h2>
+
+      <div className="mb-4">
         <input
-          className="p-1 pl-4 rounded-2xl mt-2 w-[60%]"
+          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           type="text"
-          placeholder="enter title here"
+          placeholder="Enter title here..."
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <button className="mt-2" onClick={createPaste}>
-          {pasteId ? "Update My Paste" : "Create My Paste"}
-        </button>
       </div>
-      <div className="mt-3">
+
+      <div className="relative mb-4">
         <textarea
           value={value}
-          placeholder="enter content here"
           onChange={(e) => setValue(e.target.value)}
-          rows={20}
-          cols={50}
-          className="rounded-2xl mt-4 min-w-[500px] p-4  "
+          rows={12}
+          placeholder="Write your note here..."
+          className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
         />
+        <button
+          onClick={() => {
+            handleCopy()
+            toast.success("Copied to clipboard")
+          }}
+          title="Copy"
+          className="absolute top-2 right-3 text-gray-600 hover:text-gray-800"
+        >
+          <Copy size={20} />
+        </button>
+      </div>
+
+      <div className="text-right">
+        <button
+          onClick={createPaste}
+          className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
+        >
+          {pasteId ? "Update Note" : "Create Note"}
+        </button>
       </div>
     </div>
   )
