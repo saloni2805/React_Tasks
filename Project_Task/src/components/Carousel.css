@@ -1,0 +1,27 @@
+.carousel-img {
+  height: 530px;
+  max-width: 90%;
+  margin: auto;
+  object-fit: cover;
+}
+
+.carousel-caption.custom-caption {
+  left: 8%;
+  right: auto;
+  bottom: 20%;
+  /* background: rgba(255, 255, 255, 0.8); */
+  padding: 20px 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  color: #000;
+}
+
+.carousel-caption.custom-caption h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.carousel-caption.custom-caption p {
+  font-size: 1.1rem;
+  margin: 15px 0;
+}

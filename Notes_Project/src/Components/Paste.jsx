@@ -13,6 +13,7 @@ const Paste = () => {
   const filterData = pastes.filter((paste) =>
     paste.title.toLowerCase().includes(searchText.toLowerCase())
   )
+  console.log("data", filterData)
 
   const handleDelete = (pasteId) => {
     dispatch(removeFromPastes(pasteId))
