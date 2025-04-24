@@ -9,9 +9,9 @@ const Categories = () => {
 
   return (
     <>
-      <h5 className="fw-bold mt-3 p-2">Categories</h5>
+      <h5 className=" fw-bold mt-3 py-2">Categories</h5>
 
-      <div className="card">
+      <div className="container">
         <div className="accordion" id="categoryAccordion">
           {/* Dairy, Bread & Eggs */}
           <div className="accordion-item border-1">
@@ -22,6 +22,7 @@ const Categories = () => {
                 } ${openCategory === "Dairy" ? "" : "collapsed"}`}
                 type="button"
                 onClick={() => toggleCategory("Dairy")}
+                style={{ fontSize: "15px" }}
               >
                 <i className="bi bi-cart4 me-2"></i>{" "}
                 <span className=" fw-semibold ">Dairy, Bread & Eggs</span>{" "}
@@ -72,6 +73,7 @@ const Categories = () => {
                 } ${openCategory === "Snacks" ? "" : "collapsed"}`}
                 type="button"
                 onClick={() => toggleCategory("Snacks")}
+                style={{ fontSize: "15px" }}
               >
                 <i className="bi bi-cart4 me-2"></i>{" "}
                 <span className=" fw-semibold ">Dairy, Bread & Eggs</span>{" "}
@@ -124,6 +126,7 @@ const Categories = () => {
                 } ${openCategory === "Fruits" ? "" : "collapsed"}`}
                 type="button"
                 onClick={() => toggleCategory("Fruits")}
+                style={{ fontSize: "15px" }}
               >
                 <i className="bi bi-cart4 me-2"></i>{" "}
                 <span className=" fw-semibold ">Dairy, Bread & Eggs</span>

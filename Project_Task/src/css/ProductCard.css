@@ -1,0 +1,9 @@
+.hover-shadow:hover {
+  box-shadow: 0.1rem 0.1rem 0.5rem #198754; /* Bootstrap success color shadow */
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-text-success:hover {
+  color: #198754 !important; /* text-success */
+  transition: color 0.3s ease;
+}

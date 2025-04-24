@@ -89,7 +89,7 @@ const NewArrivals = () => {
   return (
     <>
       <div
-        className="container mt-2 position-relative"
+        className="container m-0 p-1 position-relative"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -98,13 +98,16 @@ const NewArrivals = () => {
 
           <div>
             <Button
-              variant="outline-secondary"
+              variant="outline-secondary text-secondary bg-opacity-25 rounded-5 bg-secondary"
               onClick={handlePrev}
               className="me-2"
             >
               <ChevronLeft />
             </Button>
-            <Button variant="outline-secondary" onClick={handleNext}>
+            <Button
+              variant="outline-secondary text-secondary bg-opacity-25 rounded-5 bg-secondary"
+              onClick={handleNext}
+            >
               <ChevronRight />
             </Button>
           </div>
@@ -130,6 +133,7 @@ const NewArrivals = () => {
                   padding: "0 5px", // Adds some spacing between items
                 }}
               >
+                {" "}
                 <ProductCard product={product} />
               </div>
             ))}

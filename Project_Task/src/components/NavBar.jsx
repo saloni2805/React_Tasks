@@ -1,14 +1,31 @@
-import React from "react"
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap/dist/js/bootstrap.bundle.min.js"
-import { FaBell, FaUser, FaBox, FaShoppingCart } from "react-icons/fa"
+import React, { useState } from "react"
+// import "./Navbar.css" // optional for custom styling
+import Offcanvas from "react-bootstrap/Offcanvas"
+import {
+  FaBars,
+  FaBell,
+  FaUserAlt,
+  FaUser,
+  FaShoppingCart,
+  FaBox,
+  FaSlidersH,
+} from "react-icons/fa"
 import logo2 from "../assets/logo2.ico"
+import { Container, Form, FormControl, Button } from "react-bootstrap"
 import { NavLink } from "react-router-dom"
+import Categories from "./Categories"
+import Rules from "./Rules"
+import Testmonials from "./Testmonials"
 
 const Navbar = () => {
+  const [showMenuDrawer, setShowMenuDrawer] = useState(false)
+  const [showCartDrawer, setShowCartDrawer] = useState(false)
+  const [showFilterDrawer, setShowFilterDrawer] = useState(false)
+
   return (
-    <div>
-      {/* Top Header */}
+    <>
+      {/* Top Navbar */}
+
       <div className="bg-light py-1 ">
         <div className="container d-flex justify-content-between small">
           <div className="d-flex gap-3">
@@ -29,43 +46,59 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Main Navbar */}
-      <nav className="navbar navbar-expand-lg container py-3 d-flex align-items-center justify-content-between flex-wrap">
-        <NavLink
-          className="navbar-brand d-flex align-items-center fw-bold fs-4 text-dark"
-          to="#"
-        >
-          <img src={logo2} alt="FreshCart Logo" height="30" className="me-2" />
-          FreshCart
-        </NavLink>
-
-        <button
-          className="navbar-toggler ms-auto d-lg-none"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNavbar"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        {/* Search Bar */}
-        <div
-          className="input-group d-flex justify-content-center align-items-center mx-lg-5 my-3 my-lg-3 flex-grow-1 mx-3"
-          style={{ maxWidth: "600px" }}
-        >
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search for products"
-          />
-          <button className="btn btn-success">Search</button>
+      {/* <nav className="navbar navbar-expand-lg bg-white border-bottom  d-md-flex justify-content-between align-items-center p-3">
+        <div className="d-flex align-items-center">
+          <img src="/logo.svg" alt="Logo" height="40" />
+          <Form className="d-flex ms-3">
+            <FormControl
+              type="search"
+              placeholder="Search for products"
+              className="me-2"
+            />
+            <Button variant="success">Search</Button>
+          </Form>
         </div>
+        <div className="d-flex align-items-center d-none gap-4">
+          <span>Notification</span>
+          <span>Sign up</span>
+          <span>My Orders</span>
+          <span>Shopping Cart</span>
+        </div>
+      </nav> */}
 
-        <div
-          className="collapse navbar-collapse mb-2 flex-grow-0 d-flex justify-content-center align-items-center"
-          id="mainNavbar"
-        >
-          <div className="d-flex align-items-center gap-4 flex-wrap justify-content-center mt-3 mt-lg-0 ms-lg-auto">
+      {/* Main Navbar */}
+      <nav className="navbar navbar-expand-lg py-3 container">
+        <div className="row w-100 align-items-center justify-content-between ">
+          {/* Brand Logo */}
+          <div className="col-lg-2 col-md-6 col-sm-12 d-flex py-2 justify-content-center align-items-center ">
+            <NavLink
+              className="navbar-brand d-flex align-items-center fw-bold fs-4 text-dark"
+              to="#"
+            >
+              <img
+                src={logo2}
+                alt="FreshCart Logo"
+                height="30"
+                className="me-2"
+              />
+              FreshCart
+            </NavLink>
+          </div>
+
+          {/* Search Bar */}
+          <div className="d-flex justify-content-center align-items-center col-12 col-lg-6 col-md-6 py-2 ">
+            <div className="input-group mx-auto">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search for products"
+              />
+              <button className="btn btn-success">Search</button>
+            </div>
+          </div>
+
+          {/* Icons */}
+          <div className="col-12 col-lg-4 col-md-12 d-none d-md-flex py-2 justify-content-center gap-4 ">
             <div className="position-relative text-center">
               <FaBell size={18} />
               <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -90,12 +123,13 @@ const Navbar = () => {
       </nav>
 
       {/* Bottom Nav */}
-      <div className="container py-1 px-0">
+      <div className="container py-1 px-0 d-md-flex d-none">
         <ul className="nav gap-3 flex-wrap justify-content-start">
           {/* All Categories with submenus */}
           <li className="nav-item dropdown fw-semibold d-flex align-items-center position-relative">
             <NavLink
-              className="nav-link dropdown-toggle p-0 fw-semibold text-black fs-6"
+              className="nav-link dropdown-toggle p-0 fw-semibold text-black"
+              style={{ fontSize: "16px" }}
               to="#"
               role="button"
               data-bs-toggle="dropdown"
@@ -118,7 +152,11 @@ const Navbar = () => {
             </NavLink>
             <ul className="dropdown-menu mt-2">
               <li className="dropdown-submenu position-relative">
-                <NavLink className="dropdown-item dropdown-toggle" to="#">
+                <NavLink
+                  className="dropdown-item dropdown-toggle"
+                  to="#"
+                  style={{ fontSize: "16px" }}
+                >
                   Electronics
                 </NavLink>
                 <ul className="dropdown-menu">
@@ -164,7 +202,8 @@ const Navbar = () => {
             (item, idx) => (
               <li className="nav-item dropdown" key={idx}>
                 <NavLink
-                  className="nav-link dropdown-toggle p-0 text-black fs-6"
+                  className="nav-link dropdown-toggle p-0 text-black "
+                  style={{ fontSize: "15px" }}
                   to="#"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -189,18 +228,148 @@ const Navbar = () => {
 
           {/* Dashboard and Docs - plain links */}
           <li className="nav-item">
-            <NavLink className="nav-link p-0 text-black fs-6" to="/dashboard">
+            <NavLink
+              className="nav-link p-0 text-black"
+              style={{ fontSize: "15px" }}
+              to="/dashboard"
+            >
               Dashboard
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link p-0 text-black fs-6" to="#">
+            <NavLink
+              className="nav-link p-0 text-black "
+              style={{ fontSize: "15px" }}
+              to="#"
+            >
               Docs
             </NavLink>
           </li>
         </ul>
       </div>
-    </div>
+
+      {/* Bottom Sticky Navbar for Mobile */}
+      <div className="d-md-none d-flex justify-content-around align-items-center fixed-bottom bg-white shadow p-2 border-top">
+        <button className="btn" onClick={() => setShowMenuDrawer(true)}>
+          <FaBars size={20} />
+        </button>
+        <button className="btn">
+          <FaBell size={20} />
+        </button>
+        <button className="btn">
+          <FaUserAlt size={20} />
+        </button>
+        <button className="btn" onClick={() => setShowCartDrawer(true)}>
+          <FaShoppingCart size={20} />
+        </button>
+        <button className="btn" onClick={() => setShowFilterDrawer(true)}>
+          <FaSlidersH size={20} />
+        </button>
+      </div>
+
+      {/* Left Drawer: Menu */}
+      <Offcanvas
+        show={showMenuDrawer}
+        onHide={() => setShowMenuDrawer(false)}
+        placement="start"
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Menu</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <ul className="list-unstyled">
+            {["Home", "Shop", "Stores", "Mega menu", "Pages", "Account"].map(
+              (item, idx) => (
+                <li key={idx} className="mb-2">
+                  <button
+                    className="btn w-100 text-start d-flex justify-content-between align-items-center"
+                    data-bs-toggle="collapse"
+                    data-bs-target={`#collapse${item.replace(" ", "")}`}
+                    aria-expanded="false"
+                    aria-controls={`collapse${item.replace(" ", "")}`}
+                  >
+                    {item}
+                    <span className="ms-auto">&#9662;</span> {/* Down Arrow */}
+                  </button>
+                  <div
+                    className="collapse ps-3"
+                    id={`collapse${item.replace(" ", "")}`}
+                  >
+                    <ul className="list-unstyled mt-2">
+                      <li>
+                        <NavLink
+                          to="#"
+                          className="text-decoration-none text-dark"
+                        >
+                          {item} Option 1
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          to="#"
+                          className="text-decoration-none text-dark"
+                        >
+                          {item} Option 2
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              )
+            )}
+            {/* Dashboard and Docs without collapse */}
+            <li className="mt-3">
+              <NavLink
+                to="/dashboard"
+                className="text-decoration-none text-dark d-block py-1"
+              >
+                Dashboard
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="#"
+                className="text-decoration-none text-dark d-block py-1"
+              >
+                Docs
+              </NavLink>
+            </li>
+          </ul>
+        </Offcanvas.Body>
+      </Offcanvas>
+
+      {/* Right Drawer: Cart */}
+      <Offcanvas
+        show={showCartDrawer}
+        onHide={() => setShowCartDrawer(false)}
+        placement="end"
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Cart</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          {/* Cart content */}
+          <p>Your cart is empty.</p>
+        </Offcanvas.Body>
+      </Offcanvas>
+
+      {/* Right Drawer: Filters/Testimonial */}
+      <Offcanvas
+        show={showFilterDrawer}
+        onHide={() => setShowFilterDrawer(false)}
+        placement="end"
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Filter & Testimonials</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          {/* Filter content */}
+          <Categories />
+          <Rules />
+          <Testmonials />
+        </Offcanvas.Body>
+      </Offcanvas>
+    </>
   )
 }
 
