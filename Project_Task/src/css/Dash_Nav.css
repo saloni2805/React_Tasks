@@ -1,0 +1,55 @@
+/* Navbar Blur Effect */
+.navbar-blur {
+  background: rgba(255, 255, 255, 0.8); /* semi transparent */
+  backdrop-filter: blur(10px); /* blur the background */
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1040;
+  margin-left: 280px;
+}
+
+/* Optional: smooth transition when opening dropdown */
+.dropdown-menu {
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fix for mobile and tablet */
+@media (max-width: 1025px) {
+  .navbar-blur {
+    margin-left: 0; /* No margin on mobile / tablet */
+  }
+  .toggleBtn {
+    display: block;
+  }
+}
+
+@media (min-width: 1025px) {
+  .toggleBtn {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .toggleBtn {
+    padding: 5px 10px;
+  }
+
+  .form-control {
+    max-width: 120px; /* reduce search bar width */
+    font-size: 14px;
+  }
+
+  .dropdown img {
+    height: 35px;
+  }
+}

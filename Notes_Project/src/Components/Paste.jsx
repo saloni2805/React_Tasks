@@ -7,10 +7,10 @@ import { Eye, Pencil, Trash2, Copy, Share2, Calendar } from "lucide-react"
 
 const Paste = () => {
   const [searchText, setSearchText] = useState("")
-  const pastes = useSelector((state) => state.paste.pastes)
+  const Allpastes = useSelector((state) => state.paste.pastes)
   const dispatch = useDispatch()
 
-  const filterData = pastes.filter((paste) =>
+  const filterData = Allpastes.filter((paste) =>
     paste.title.toLowerCase().includes(searchText.toLowerCase())
   )
   console.log("data", filterData)

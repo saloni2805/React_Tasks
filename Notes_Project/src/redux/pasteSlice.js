@@ -16,13 +16,15 @@ export const pasteSlice = createSlice({
       // Add a check-> Paste already exist vala check
       const paste = action.payload
       state.pastes.push(paste)
-      localStorage.setItem("pastes", JSON.stringify(state.pastes))
+      localStorage.setItem("pastes", JSON.stringify(state.pastes)) // Converts object into string
       toast.success("Paste created successfuly")
     },
     // ---- Updation ----
     updateToPastes: (state, action) => {
+      console.log(action)
       const paste = action.payload
       let index = state.pastes.findIndex((item) => item._id === paste._id)
+      console.log(index)
 
       if (index >= 0) {
         state.pastes[index] = paste

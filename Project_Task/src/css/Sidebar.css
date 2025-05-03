@@ -1,0 +1,54 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: #fff;
+  border-right: 2px dotted #dee2e6;
+  padding: 1rem;
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+/* Hide sidebar on iPad Pro & smaller */
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+    z-index: 2000;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
+/* Sidebar section title style */
+.section-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #adb5bd;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Badge smaller */
+.badge-small {
+  font-size: 0.6rem;
+}
+
+/* Main content area */
+.content {
+  margin-left: 280px;
+  padding: 1rem;
+  background: #f8f9fa;
+  min-height: 100vh;
+  /* background-color: antiquewhite; */
+}
+
+/* Make content full width on iPad Pro and smaller */
+@media (max-width: 1025px) {
+  .content {
+    margin-left: 0;
+  }
+}
