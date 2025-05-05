@@ -1,0 +1,50 @@
+.dash-cards-scroll {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dash-card {
+  width: 280px;
+  scroll-snap-align: start;
+  background-color: white;
+  border-radius: 1rem;
+}
+
+/* Responsive layout */
+@media (min-width: 576px) {
+  .dash-card {
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .dash-cards-scroll {
+    flex-wrap: wrap;
+  }
+
+  .dash-card {
+    width: calc(33.333% - 1rem);
+  }
+}
+
+/* Icon circle */
+.icon-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 0.9rem;
+}
+
+/* Subtle background colors (optional fallback if not using Bootstrap 5.3+) */
+.bg-danger-subtle {
+  background-color: #f8d7da;
+}
+.bg-warning-subtle {
+  background-color: #fff3cd;
+}
+.bg-primary-subtle {
+  background-color: #cfe2ff;
+}

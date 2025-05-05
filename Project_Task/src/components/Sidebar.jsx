@@ -4,6 +4,7 @@ import logo2 from "../assets/logo2.ico"
 import { NavLink } from "react-router-dom"
 // import MainContent from "./MainContent"
 import DashNav from "./Dash_Nav"
+import { Outlet } from "react-router-dom"
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -212,6 +213,7 @@ const Sidebar = () => {
       {/* Main Content */}
       <div className="content">
         <DashNav toggleSidebar={toggleSidebar} />
+        <Outlet />
       </div>
     </>
   )
