@@ -18,7 +18,6 @@ const Udata = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log("Submitedd")
     try {
       const res = await axios.post(`http://localhost:3000/Employees`, data)
       console.log(res.data)
@@ -45,7 +44,7 @@ const Udata = () => {
                 </div> */}
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form onSubmit={(e) => handleSubmit(e)} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               {/* <label htmlFor="email" className="block text-sm/6 font-medium text-blue-400">
                                 Email address
