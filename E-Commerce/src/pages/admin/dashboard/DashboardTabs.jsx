@@ -11,16 +11,6 @@ function DashboardTab() {
   const { mode, product, edithandle, deleteProduct, order, user } = context
   console.log("object", user)
 
-  //   let [isOpen, setIsOpen] = useState(false)
-
-  //   function closeModal() {
-  //     setIsOpen(false)
-  //   }
-
-  //   function openModal() {
-  //     setIsOpen(true)
-  //   }
-
   const add = () => {
     window.location.href = "/addproduct"
   }
